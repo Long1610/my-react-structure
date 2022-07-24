@@ -1,6 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import RequireAuth from "guard";
-import Layout from "layout";
+import Layout from "layouts";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Posts from "pages/Posts";
