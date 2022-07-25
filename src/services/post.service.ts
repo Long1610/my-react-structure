@@ -1,5 +1,5 @@
 import api from "./api";
-import { post } from "../@types/post.interface";
+import { post } from "types/post.interface";
 
 const getPosts = () => {
   return api.get("/posts");
