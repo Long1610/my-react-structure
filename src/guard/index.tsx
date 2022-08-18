@@ -1,20 +1,16 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import TokenService from 'services/token.service';
 
-function RequireAuth({ children }: any) {
-  let auth = {
-    user: "long",
-  };
-  let location = useLocation();
+function RequireAuth() {
+  const user = TokenService.getUser();
+  let location = useLocation() as any;
+  let from = location?.state?.from?.pathname || '/';
 
-  if (!auth.user) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!user?.token) {
+    return <Navigate to="/login" state={{ from }} replace />;
   }
 
-  return children ? children : <Outlet />;
+  return <Outlet />;
 }
 
 export default RequireAuth;

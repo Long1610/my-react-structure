@@ -2,9 +2,8 @@ import { useRoutes } from "react-router-dom";
 import RequireAuth from "guard";
 import Layout from "layouts";
 import Home from "pages/Home";
-import Login from "pages/Login";
-import Posts from "pages/Posts";
-import SignUp from "pages/SignUp";
+import Login from "pages/User/Login";
+import About from "pages/About";
 
 function Routes() {
   const routes = useRoutes([
@@ -15,13 +14,11 @@ function Routes() {
           path: "/",
           element: <Home />,
         },
-        { path: "/posts", element: <Posts /> },
         { path: "/login", element: <Login /> },
-        { path: "/signup", element: <SignUp /> },
-        // {
-        //   element: <RequireAuth children={null} />,
-        //   children: [{ path: "/posts", element: <Posts /> }],
-        // },
+        {
+          element: <RequireAuth />,
+          children: [{ path: "/about", element: <About /> }],
+        },
       ],
     },
   ]);
