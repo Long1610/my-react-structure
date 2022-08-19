@@ -1,63 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import { Box } from '@mui/system';
-import { Grid, Typography, IconButton } from '@mui/material';
-import Input from 'elements/Input';
-import EyeIcon from 'assets/icons/eye';
-import EyeCrossIcon from 'assets/icons/eye-cross';
-import ButtonCustom from 'elements/Button';
-import { useAppSelector, useAppDispatch } from 'app/hooks';
-import { getStatus, getUser } from './userSlice';
-import { signIn } from './userThunk';
-import { useNavigate } from 'react-router-dom';
-import './styles.scss';
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as Yup from 'yup'
+import { Box } from '@mui/system'
+import { Grid, Typography, IconButton } from '@mui/material'
+import Input from 'elements/Input'
+import EyeIcon from 'assets/icons/eye'
+import EyeCrossIcon from 'assets/icons/eye-cross'
+import ButtonCustom from 'elements/Button'
+import { useAppSelector, useAppDispatch } from 'app/hooks'
+import { getStatus, getUser } from './userSlice'
+import { signIn } from './userThunk'
+import { useNavigate } from 'react-router-dom'
+import './styles.scss'
 
 const SignIn = () => {
-  const userInfo = useAppSelector(getUser);
-  const isLoading = useAppSelector(getStatus);
-  const dispatch = useAppDispatch();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const userInfo = useAppSelector(getUser)
+  const isLoading = useAppSelector(getStatus)
+  const dispatch = useAppDispatch()
+  const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required('email is required'),
     password: Yup.string().required('password is required')
-  });
+  })
 
   const defaultValues = {
     email: '',
     password: ''
-  };
+  }
 
   const formOptions = {
     resolver: yupResolver(validationSchema),
     defaultValues
-  };
-  const { handleSubmit, formState, getValues, control } = useForm(formOptions);
-  const { errors } = formState;
+  }
+  const { handleSubmit, formState, getValues, control } = useForm(formOptions)
+  const { errors } = formState
 
   const onSubmit = (data: any) => {
-    dispatch(signIn(data));
-  };
+    dispatch(signIn(data))
+  }
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!!userInfo?.token) {
-      navigate('/');
+      navigate('/')
     }
-  }, [userInfo]);
+  }, [userInfo])
 
   const handleClickShowPassword = () => {
-    setShowPassword((s) => !s);
-  };
+    setShowPassword(s => !s)
+  }
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   const EndComponent = () => {
     return (
@@ -69,10 +69,10 @@ const SignIn = () => {
       >
         {showPassword ? <EyeIcon /> : <EyeCrossIcon />}
       </IconButton>
-    );
-  };
+    )
+  }
 
-  const { password, email } = errors;
+  const { password, email } = errors
 
   return (
     <>
@@ -104,7 +104,7 @@ const SignIn = () => {
         </form>
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn
