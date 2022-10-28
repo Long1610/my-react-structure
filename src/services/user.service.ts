@@ -1,12 +1,12 @@
-import api from "./api";
-import { user } from "types/user.interface";
+import api from './api'
+import { user } from 'types/user.interface'
 
 const signIn = (data: user) => {
-  return api.post(`/users/login`, { user: data });
-};
+  return api.post(`/users/login`, { user: data })
+}
 
 const UserService = {
-  signIn,
-};
+  signIn
+}
 
-export default UserService;
+export default UserService

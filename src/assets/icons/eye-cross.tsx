@@ -1,5 +1,3 @@
-import React from "react";
-
 const EyeCrossIcon = () => {
   return (
     <svg
@@ -14,7 +12,7 @@ const EyeCrossIcon = () => {
         fill="#3C4651"
       />
     </svg>
-  );
-};
+  )
+}
 
-export default EyeCrossIcon;
+export default EyeCrossIcon

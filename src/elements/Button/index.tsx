@@ -1,14 +1,14 @@
-import { CircularProgress } from '@mui/material';
-import React from 'react';
-import './styles.scss';
+import { CircularProgress } from '@mui/material'
+import React from 'react'
+import './styles.scss'
 
 interface button {
-  onClick?: () => void;
-  title: string;
-  cate: 'out-line-disable' | 'out-line' | 'standard' | 'standard-light';
-  custom?: any;
-  isLoading?: boolean;
-  disabled?: boolean;
+  onClick?: () => void
+  title: string
+  cate: 'out-line-disable' | 'out-line' | 'standard' | 'standard-light'
+  custom?: any
+  isLoading?: boolean
+  disabled?: boolean
 }
 
 const Button = ({
@@ -19,16 +19,16 @@ const Button = ({
   isLoading,
   disabled
 }: button) => {
-  let style = '';
+  let style = ''
   switch (cate) {
     case 'out-line':
-      style = 'button_outline';
-      break;
+      style = 'button_outline'
+      break
     case 'standard-light':
-      style = 'button_standard_light';
-      break;
+      style = 'button_standard_light'
+      break
     default:
-      style = 'button_standard';
+      style = 'button_standard'
   }
 
   return (
@@ -41,7 +41,7 @@ const Button = ({
         {isLoading ? <CircularProgress color="inherit" /> : title}
       </button>
     </>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

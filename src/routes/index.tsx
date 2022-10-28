@@ -1,28 +1,16 @@
-import { useRoutes } from "react-router-dom";
-import RequireAuth from "guard";
-import Layout from "layouts";
-import Home from "pages/Home";
-import Login from "pages/User/Login";
-import About from "pages/About";
+import { useRoutes } from 'react-router-dom'
+import Layout from 'layouts'
+import { Protected } from './protected'
+import { Public } from './public'
 
-function Routes() {
+const Routes = () => {
   const routes = useRoutes([
     {
       element: <Layout />,
-      children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        { path: "/login", element: <Login /> },
-        {
-          element: <RequireAuth />,
-          children: [{ path: "/about", element: <About /> }],
-        },
-      ],
-    },
-  ]);
-  return routes;
+      children: [...Public, ...Protected]
+    }
+  ])
+  return routes
 }
 
-export default Routes;
+export default Routes

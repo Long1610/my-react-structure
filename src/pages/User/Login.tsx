@@ -5,14 +5,13 @@ import * as Yup from 'yup'
 import { Box } from '@mui/system'
 import { Grid, Typography, IconButton } from '@mui/material'
 import Input from 'elements/Input'
-import EyeIcon from 'assets/icons/eye'
-import EyeCrossIcon from 'assets/icons/eye-cross'
+import { Eye, EyeCross } from 'assets/icons'
 import ButtonCustom from 'elements/Button'
 import { useAppSelector, useAppDispatch } from 'app/hooks'
 import { getStatus, getUser } from './userSlice'
 import { signIn } from './userThunk'
 import { useNavigate } from 'react-router-dom'
-import './styles.scss'
+import styles from './user.module.scss'
 
 const SignIn = () => {
   const userInfo = useAppSelector(getUser)
@@ -67,7 +66,7 @@ const SignIn = () => {
         onMouseDown={handleMouseDownPassword}
         edge="end"
       >
-        {showPassword ? <EyeIcon /> : <EyeCrossIcon />}
+        {showPassword ? <Eye /> : <EyeCross />}
       </IconButton>
     )
   }
@@ -76,9 +75,9 @@ const SignIn = () => {
 
   return (
     <>
-      <Box className="sign_in">
-        <Typography className="title_signin">TechCent Logo</Typography>
-        <form onSubmit={handleSubmit(onSubmit)} className="form">
+      <Box className={styles.sign_in}>
+        <Typography className={styles.title_signin}>TechCent Logo</Typography>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <Grid container spacing={1}>
             <Grid item xs={12} sm={12}>
               <Input
@@ -98,7 +97,7 @@ const SignIn = () => {
               />
             </Grid>
           </Grid>
-          <Box className="signin_button">
+          <Box className={styles.signin_button}>
             <ButtonCustom title="Login" cate="standard" isLoading={isLoading} />
           </Box>
         </form>

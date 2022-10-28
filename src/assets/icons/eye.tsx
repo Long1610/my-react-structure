@@ -1,5 +1,3 @@
-import React from "react";
-
 const EyeIcon = () => {
   return (
     <svg
@@ -14,7 +12,7 @@ const EyeIcon = () => {
         fill="#3C4651"
       />
     </svg>
-  );
-};
+  )
+}
 
-export default EyeIcon;
+export default EyeIcon
